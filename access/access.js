@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken')
-const {
-  JWT_SECRET
-} = require('../config/keys')
 const mongoose = require('mongoose')
 const User = mongoose.model("User")
+require('dotenv').config()
+const JWT_SECRET = `${process.env.JWT}`;
+
 module.exports = (req, res, next) => {
   const {
     authorization

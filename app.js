@@ -1,10 +1,10 @@
 const express = require('express')
 const app = express();
-const PORT = 5000;
+const port = 5000;
 const mongoose = require('mongoose');
-const {MONGOURI} = require('./config/keys')
+require('dotenv').config()
 
-
+const MONGOURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@tdss.duk1n.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
 
 mongoose.connect(MONGOURI,{
   keepAlive: true,
@@ -31,6 +31,6 @@ app.get('/',(req,res)=>{
   res.send("Welcome to travel diaries server");
 })
 
-app.listen(PORT,()=>{
+app.listen(port,()=>{
   console.log('Server is Running');
 })
